@@ -32,11 +32,9 @@ const ItemCtrl = (() => {
       }
       
       // Calories to num 
-      calories = parseInt(calories);
-      
+      calories = parseInt(calories);  
       // Create new item 
       newItem = new Item(ID, name, calories);
-      
       // Add to items array 
       data.items.push(newItem);
       
@@ -48,6 +46,24 @@ const ItemCtrl = (() => {
       // loop thru items 
       data.items.forEach(item => {
         if (item.id === id) {
+          found = item;
+        }
+      });
+      
+      return found;
+    },
+    // Update item in data structure
+    updateItem: (name, calories) => {
+      // Calories to number 
+      calories = parseInt(calories);
+      
+      // Initialize result variable 
+      let found = null;
+      // Loop thru items 
+      data.items.forEach(item => {
+        if (item.id === data.currentItem.id) {
+          item.name = name;
+          item.calories = calories;
           found = item;
         }
       });
