@@ -67,7 +67,20 @@ const App = ((ItemCtrl, UICtrl) => {
   
   // Update item submit 
   const itemUpdateSubmit = (e) => {
-    
+    // Get item input 
+    const { name, calories } = UICtrl.getItemInput();
+    // Update item in data structure with input
+    const updatedItem = ItemCtrl.updateItem(name, calories);
+    // Update item in UI 
+    UICtrl.updateListItem(updatedItem);
+    // Get total calories 
+    const totalCalories = ItemCtrl.getTotalCalories();
+    // Update total calories display 
+    UICtrl.showTotalCalories(totalCalories);
+    // Reset inputs 
+    UICtrl.clearEditState();    
+    // Reset current item 
+    ItemCtrl.setCurrentItem(null);
     
     e.preventDefault();
   }
