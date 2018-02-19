@@ -4,12 +4,24 @@ const App = ((ItemCtrl, UICtrl) => {
   const loadEventListeners = () => {
     // Get UI selectors 
     const UISelectors = UICtrl.getSelectors();
+    
+    // Disable submit on enter keypress 
+    document.addEventListener('keypress', (e) => {
+      // Check if enter key pressed 
+      if (e.keyCode === 13 || e.which ===13) {
+        e.preventDefault();
+        return false;
+      }
+    });
   
     // Add item event 
     document.querySelector(UISelectors.addBtn).addEventListener('click', itemAddSubmit);
     
     // Edit icon click event 
     document.querySelector(UISelectors.itemList).addEventListener('click', itemEditClick);
+    
+    // Update item event 
+    document.querySelector(UISelectors.updateBtn).addEventListener('click', itemUpdateSubmit);    
   }
   
   // Add item submit 
@@ -34,8 +46,7 @@ const App = ((ItemCtrl, UICtrl) => {
   }
   
   // Click edit item
-  const itemEditClick = function (e) {
-
+  const itemEditClick = (e) => {
     if (e.target.classList.contains("edit-item")) {
       // Get list item-id 
       const listId = e.target.parentNode.parentNode.id;
@@ -52,6 +63,13 @@ const App = ((ItemCtrl, UICtrl) => {
     }
   
   e.preventDefault();  
+  }
+  
+  // Update item submit 
+  const itemUpdateSubmit = (e) => {
+    
+    
+    e.preventDefault();
   }
   
   // Public methods
