@@ -7,6 +7,7 @@ const UICtrl = (() => {
     backBtn: '.back-btn',
     updateBtn: '.update-btn',
     deleteBtn: '.delete-btn',
+    clearBtn: '.clear-btn',
     itemNameInput: '#item-name',
     itemCaloriesInput: '#item-calories',
     totalCalories: '.total-calories'
@@ -78,6 +79,16 @@ const UICtrl = (() => {
       const item = document.querySelector(itemId);
       // Remove node 
       item.remove();
+    },
+    removeItems: () => {
+      // Get node list of items 
+      let listItems = document.querySelectorAll(UISelectors.listItems);
+      // Convert into array 
+      listItems = Array.from(listItems);
+      // Iterate array 
+      listItems.forEach(item => {
+        item.remove();
+      });
     },
     getSelectors: () => UISelectors,    
     getItemInput: () => {
