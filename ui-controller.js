@@ -71,6 +71,14 @@ const UICtrl = (() => {
         }
       });
     },
+    deleteListItem: (id) => {
+      // Create element #id from item id 
+      const itemId = `#item-${id}`;
+      // Get item node 
+      const item = document.querySelector(itemId);
+      // Remove node 
+      item.remove();
+    },
     getSelectors: () => UISelectors,    
     getItemInput: () => {
       return {
