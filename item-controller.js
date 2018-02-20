@@ -82,6 +82,10 @@ const ItemCtrl = (() => {
     setCurrentItem: (item) => {
       data.currentItem = item;
     },
+    // Delete all items in data structure 
+    clearAllItems: () => {
+      data.items = [];
+    },
     getCurrentItem: () => data.currentItem,
     getTotalCalories: () => {
       let total = 0;
