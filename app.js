@@ -21,7 +21,13 @@ const App = ((ItemCtrl, UICtrl) => {
     document.querySelector(UISelectors.itemList).addEventListener('click', itemEditClick);
     
     // Update item event 
-    document.querySelector(UISelectors.updateBtn).addEventListener('click', itemUpdateSubmit);    
+    document.querySelector(UISelectors.updateBtn).addEventListener('click', itemUpdateSubmit);  
+      
+    // Delete item event 
+    document.querySelector(UISelectors.deleteBtn).addEventListener('click', itemDeleteSubmit);  
+      
+    // Back button event 
+    document.querySelector(UISelectors.backBtn).addEventListener('click', UICtrl.clearEditState);    
   }
   
   // Add item submit 
@@ -81,6 +87,26 @@ const App = ((ItemCtrl, UICtrl) => {
     UICtrl.clearEditState();    
     // Reset current item 
     ItemCtrl.setCurrentItem(null);
+    
+    e.preventDefault();
+  }
+  
+  // Delete item submit 
+  const itemDeleteSubmit = (e) => {
+    // Get current item 
+    const currentItem = ItemCtrl.getCurrentItem();
+    // Delete item from data structure 
+    ItemCtrl.deleteItem(currentItem.id);
+    // Delete item from UI 
+    UICtrl.deleteListItem(currentItem.id);
+    // Get total calories 
+    const totalCalories = ItemCtrl.getTotalCalories();
+    // Update total calories display 
+    UICtrl.showTotalCalories(totalCalories);
+    // Reset inputs 
+    UICtrl.clearEditState();    
+    // Reset current item 
+    ItemCtrl.setCurrentItem(null);    
     
     e.preventDefault();
   }
