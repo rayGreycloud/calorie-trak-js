@@ -22,8 +22,8 @@ const UICtrl = (() => {
         html += `
         <li class="collection-item" id="item-${item.id}">
           <strong>${item.name}</strong> - <em>${item.calories} calories</em>
-          <a href="#" class="edit-item secondary-content">
-            <i class="fa fa-pencil"></i>
+          <a href="#" class="secondary-content">
+            <i class="edit-item fa fa-pencil fa-lg"></i>
           </a>
         </li>
         `;
