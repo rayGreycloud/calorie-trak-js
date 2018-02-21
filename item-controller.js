@@ -9,11 +9,11 @@ const ItemCtrl = (() => {
   
   // State 
   const data = {
-    items: [
+    // items: [
       // { id: 0, name: 'Strawberry Waffle', calories: 600 },
       // { id: 1, name: 'Vegetable Soup', calories: 400 },
       // { id: 2, name: 'Chicken with Rice', calories: 800 }    
-    ],
+    items: StorageCtrl.getItems(),
     currentItem: null,
     totalCalories: 0
   }
