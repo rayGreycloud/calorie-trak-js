@@ -19,7 +19,36 @@ const StorageCtrl = (() => {
       const itemsLS = localStorage.getItem('items');
       // return items or empty array 
       return itemsLS === null ? [] : JSON.parse(itemsLS);
-    },
+    }, 
+    updateItem: (updatedItem) => {
+      const items = JSON.parse(localStorage.getItem('items'));
+      // Iterate thru items
+      items.forEach((item, index) => {
+        // Look for matching id 
+        if (updatedItem.id === item.id) {
+          // Replace matching item with updated item
+          items.splice(index, 1, updatedItem);
+        }
+      });
+      // Stringify and set in ls 
+      localStorage.setItem('items', JSON.stringify(items));
+    }, 
+    deleteItem: (id) => {
+      const items = JSON.parse(localStorage.getItem('items'));
+      // Iterate thru items
+      items.forEach((item, index) => {
+        // Look for matching id 
+        if (id === item.id) {
+          // Replace matching item with updated item
+          items.splice(index, 1);
+        }
+      });
+      // Stringify and set in ls 
+      localStorage.setItem('items', JSON.stringify(items));      
+    }, 
+    clearItems: () => {
+      localStorage.removeItem('items');
+    }
     
     // // Instructor version 
     // storeItem: (newItem) => {
