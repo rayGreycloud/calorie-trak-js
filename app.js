@@ -1,5 +1,5 @@
 // App controller
-const App = ((StorageCtrl, ItemCtrl, UICtrl) => {
+const App = ((UICtrl, StorageCtrl, ItemCtrl) => {
   // Load event listeners 
   const loadEventListeners = () => {
     // Get UI selectors 
@@ -82,6 +82,8 @@ const App = ((StorageCtrl, ItemCtrl, UICtrl) => {
     const { name, calories } = UICtrl.getItemInput();
     // Update item in data structure with input
     const updatedItem = ItemCtrl.updateItem(name, calories);
+    // Update in ls 
+    StorageCtrl.updateItem(updatedItem);
     // Update item in UI 
     UICtrl.updateListItem(updatedItem);
     // Get total calories 
@@ -102,6 +104,8 @@ const App = ((StorageCtrl, ItemCtrl, UICtrl) => {
     const currentItem = ItemCtrl.getCurrentItem();
     // Delete item from data structure 
     ItemCtrl.deleteItem(currentItem.id);
+    // Delete from ls 
+    StorageCtrl.deleteItem(currentItem.id);
     // Delete item from UI 
     UICtrl.deleteListItem(currentItem.id);
     // Get total calories 
@@ -120,6 +124,8 @@ const App = ((StorageCtrl, ItemCtrl, UICtrl) => {
   const clearAllItemsClick = (e) => {
     // Delete all items from data structure
     ItemCtrl.clearAllItems();
+    // Clear items from ls 
+    StorageCtrl.clearItems();
     // Get total calories     
     const totalCalories = ItemCtrl.getTotalCalories();
     // Update total calories display 
@@ -161,7 +167,7 @@ const App = ((StorageCtrl, ItemCtrl, UICtrl) => {
     }
   }
   
-})(StorageCtrl, ItemCtrl, UICtrl);
+})(UICtrl, StorageCtrl, ItemCtrl);
 
 // Initializing app 
 App.init();
