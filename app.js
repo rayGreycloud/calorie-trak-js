@@ -1,5 +1,5 @@
 // App controller
-const App = ((ItemCtrl, UICtrl) => {
+const App = ((StorageCtrl, ItemCtrl, UICtrl) => {
   // Load event listeners 
   const loadEventListeners = () => {
     // Get UI selectors 
@@ -41,6 +41,8 @@ const App = ((ItemCtrl, UICtrl) => {
     if (input.name !== '' && input.calories !== '') {
       // Add item 
       const newItem = ItemCtrl.addItem(input.name, input.calories); 
+      // Add to localStorage 
+      StorageCtrl.storeItem(newItem);
       // Add item to UI list
       UICtrl.addListItem(newItem);
       // Get total calories 
@@ -159,7 +161,7 @@ const App = ((ItemCtrl, UICtrl) => {
     }
   }
   
-})(ItemCtrl, UICtrl);
+})(StorageCtrl, ItemCtrl, UICtrl);
 
 // Initializing app 
 App.init();
